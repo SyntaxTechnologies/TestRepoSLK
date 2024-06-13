@@ -1,0 +1,488 @@
+Class 1
+Cucumber -
+
+BDD - behavioral driven development
+
+gherkin
+
+group id - org.syntax
+artifact id - hrmsb19
+
+src -
+    main - to develop the application
+    test - to test the application
+
+    delete main folder because we don't need it
+
+    in test - we have
+        java - for technical stuff
+        resources - for non technical stuff
+
+now we have - java, selenium, cucumber, apache, commons io
+
+
+scenario - BDD -
+the file where we write BDD scenarios, we call it feature file
+
+In one user story - we have multiple test cases
+similarly, in one feature file, we write multiple scenarios for that user story
+
+ rules of steps - dont add any space or any char after implementing step definition
+ dont write duplicate step def, just one step definition should exist
+ you can call steps in feature multiple times, but in back-end there should be only one step
+ definition
+
+
+Search employee -
+
+Search employee by id -
+    Given user is navigated to HRMS application
+    When user enters valid username and password
+    And user clicks on login button
+    Then user is successfully logged in
+    When user clicks on PIM option
+    And user clicks on employee list option
+    When user enters valid employee id
+    And user clicks on search button
+    Then user see the employee information
+
+
+we have scenarios written in feature file
+we have step definitions in steps classes
+
+all test scenarios are executing properly
+
+we are calling methods from common methods class
+we are using selenium webdriver from common methods class
+
+runner class - it is considered as the most important class of cucumber
+
+3 important classes in cucumber
+feature file
+step definition
+
+runner class - we can execute all of the scenarios, some of the scenarios,
+one of the scenarios from this class
+we can generate all the step definitions in just one click
+we can generate reports also from this class
+we can separate scenarios also from this class
+
+Class 2 -
+recap -
+cucumber -
+feature file in which we write all the scenarios
+step definition class where all the step definitions are available
+runner class - all the test cases we execute from runner class
+
+maven project -
+artifact id - project name
+group id - company name
+
+main - development
+test - to test the application
+ test - java and resources - for all technical part we need java and for all
+ non tech part we need resources
+
+Background -
+it allows us to write all duplicate steps in one feature file till the time flow is
+not broken at one place.
+
+once the flow is broken, we cannot write steps in background.
+one background is applicable for one feature file it means for every feature file
+background will be different
+
+tags = if we need to execute specific scenarios, we use tag name here
+we can add multiple tags to one scenario
+we can give any name to tag
+
+Hooks - in cucumber, hooks we use to mention pre condition and post condition
+of the complete project. It means for all the feature files, we have common
+pre condition and post condition such as opening the browser and closing the browser
+
+RULE: Hooks class will be implemented under steps package
+
+Background vs hooks -
+
+hooks are applicable for complete project (all feature files)
+background is applicable only for one feature file
+
+in background we keep all the common steps for one feature file
+in Hooks we keep only pre conditions and post conditions of the entire project
+
+Data driven testing - when your one test case executes against multiple sets of data
+
+Class 3
+Recap -
+
+background -
+
+in one feature file, if we have some steps which are common across all the scenarios
+then we can write them in background but only till the point where flow is not broken
+
+background is applicable only for one feature file, for every feature file, background
+will be different
+
+hooks -
+
+before and after - pre condition and post condition
+hooks class will always be under steps package
+
+tags - in order to execute scenarios/test cases in groupd, we use tags
+
+hard coded data - it is strictly prohibited
+data should be parameterized - scripts should be generic
+
+from feature file, we can pass the data in scenario itself.
+this type of scenario will be applicable to implement for just one data set
+
+scripts should be generic, it should be data driven testing
+
+when one script executes against multiple sets of data, then we call it data
+driven testing
+in order to implement ddt in cucumber, we use scenario outline with examples table
+
+Page object model design pattern -
+
+we create object repository of every page in individual class
+
+Review class -
+
+cucumber as a tool -
+
+BDD approach - behavioral driven development approach
+
+given - pre condition
+when - to perform actions (click, send keys, drag and drop, dropdown etc)
+then - expected result
+and -  supporting tag that can be used with given, when, then
+
+maven project -
+build tool - it makes my project as a single build
+
+configuration file - pom.xml (dependencies, plugins, run the code)
+
+artifact id - project name
+group id - organisation name
+
+main - to write the code for development
+test - to write the code for testing
+
+test -
+    java - for all technical stuff
+    resources - for all non java stuff
+
+we wrote scenarios in project
+every single test case will be considered as one scenario
+
+we use feature file to write scenarios -
+
+feature file
+step definition class
+runner class
+
+
+
+hooks - pro condition and post condition -
+
+user story - Employee search
+
+Background -
+Given user is navigated to HRMS application
+    When user enters valid username and password
+    And user clicks on login button
+    Then user is successfully logged in
+    When user clicks on PIM option
+    And user clicks on employee list option
+
+Scenario - search employee by id
+    When user enters valid employee id
+    And user clicks on search button
+    Then user see the employee information
+
+
+Scenario - search employee by name
+    When user enters valid employee name
+    And user clicks on search button
+    Then user see the employee information
+
+Hooks - in hooks, we implement pre condition and post condition
+
+pre condition - opening the browser and launching the application
+post condition - close the browser
+
+Rule - hooks will be implemented in steps package
+
+@Before - is pre condition
+@After - is post condition
+
+difference in between hooks and background
+
+background is applicable for one feature file
+hooks are applicable for entire project
+
+we dont pass hard coded data in framework
+cucumber allows me to pass data from feature file
+
+my script should run against multiple sets of data
+in order to achieve data driven testing
+
+page object model design pattern
+
+for every screen in the application, you create a page class for this screen and
+keep all the locators (object repository) in it. to maintain the code reusability
+and management
+
+in page class, we use @find by annotation to locate the elements
+we call them object repository
+
+to initialize all the elements, we use constructor because contructor has been called
+automatically when the object has been created.
+
+in constructor, we call page factory and init elements
+
+to utilize all page classes, we implement page initialiser class
+we are calling this class in common methods class so that it can be called
+everywhere.
+
+Class 4 -
+
+Recap -
+
+background -
+
+in every feature file, if steps are common in scenarios and the flow is not broken,
+then we keep all these common steps in background.
+
+background is applicable only for one feature file. It means, for every feature file,
+background is different.
+
+hooks - hooks class contains, pre condition and post condition for the entire project
+hooks class will be a part of steps package
+
+we can pass data from feature file in scenario itself through parameters
+
+data driven testing -
+
+we can pass data from scenario outline with examples table
+in examples table, we pass username and password as an example
+based on the total number of data sets, my scenario will be executed
+if I have 3 data sets, my scenario will execute 3 times.
+
+Page object model design pattern -
+
+it allows us to create separate page classes for separate screens
+in this page class, we keep all the locators(object repositories)
+to use these elements, we initialize them using constructor
+
+we create the objects of these page classes using page initializer class
+we are extending this page initializer class in common methods so that all the objects
+can be called in the beginning of the execution
+
+-----------------------------------------------------------------------------
+Case Study from start to finish
+Login feature -
+
+valid login test -
+    Given user is navigated to HRMS application
+    When user enters valid username and password
+    And user clicks on login button
+    Then user is successfully logged in
+
+invalid login test
+    Given user is navigated to HRMS application
+    When user enters invalid username and password
+    And user clicks on login button
+    Then user should get error message on screen
+
+
+invalid username and valid password
+valid username and invalid password
+valid username and blank password
+blank username and valid password
+
+
+
+Forgotten account
+    Given user is navigated to HRMS application
+    When user clicks on fogotton account link
+    Then user should be navigated to forgot account page
+
+Signup for FB
+    Given user is navigated to HRMS application
+    When user clicks on signup for facebook page
+    Then user should be navigated to signup page
+
+We will create feature file with the name - Login.feature
+
+in this file, I will write all the scenarios
+
+create maven project -
+look for test folder
+create resources
+create features
+create login.feature
+write all the scenarios
+
+you need to create step definition -
+to keep all step def's, create steps package
+under steps package, LoginSteps class
+
+for generating the step def, we need runner class
+create runner package, inside this create runner class
+
+inside runner class - you mention all the cucumber options
+
+you keep step definitions in steps class
+
+now you have to write the code.
+you need common methods to call.
+write common methods and mention all the methods you need in scripting
+
+create config.properties file, create config directory, it will be under resources
+create config reader class, create utils package
+create constants class to keep all the paths
+
+coming back to write the code in steps classes,
+we need locators, common methods.
+
+we need page classes, create pages package
+implement Page object model design pattern
+
+to run these things, we need Hooks class for pre condition and post condition
+you keep it under steps package
+
+-----------------------------------------------------------------------------------
+
+data table -
+
+data table is implement only for one step
+hooks will execute 1 time
+doesn't matter how many data sets you send here, it will execute your pre and post
+condition
+
+.xlsx - XSSFWorkBook
+.xls - HSSFWorkBook
+
+to validate specific field or string value we need assertions
+
+in cucumber we use junit assertions
+
+Assertions -
+
+assertTrue - if something needs to be validated which exist or not
+assertEquals - if we need to compare 2 values i.e expected and actual
+
+Class 5 -
+
+recap -
+
+data table - when we need to add multiple data sets in single execution, unlike
+examples table, we implement data table.
+
+difference examples table vs data table
+
+in examples table - hooks execute based on data sets
+                    background executes based on data sets
+
+in data table - hooks execute one time
+                background executes 1 time
+
+
+for data management and maintain confidentiality of data,
+excel file - we pass data from excel file
+
+list of maps -
+for each loop, to get one map at one point of time
+based on keys, we fetch values from excel file via excel reader class
+
+assertions -
+junit -
+
+assert.asserttrue
+assert.assertequals
+
+all types of report you generate in framework will be a part of target folder
+
+pretty keyword - it is used to print all the steps in console
+
+in cucumber, when you take screenshot, it accepts screenshot in array of byte
+byte[]
+
+Scenario class in cucumber - it holds the complete information of execution done
+which test case executed
+which test case passed
+which test case failed
+what steps passed
+what steps failed
+
+
+rerun plugin - it is used to keep all the failed test case path details
+which we pass under failedrunner class to give these test cases second chance
+
+Class 6 -
+recap -
+
+reports -
+
+pretty keyword - under plugin in runner class -
+to print steps in the console
+
+html report - under target folder, it generates the report
+
+we executed our code from pom.xml file
+maven surefile plugin is used to execute test cases from pom.xml file
+
+maven cucumber reporter plugin - to generate report from pom.xml file
+we need to attach screenshot in the report
+
+screenshot method which accepts array of byte in cucumber
+it gives us screenshot, and to add different names to the screenshot,
+we use timestamp method
+
+- sometimes, normal click doesn't work in the automation
+
+logging -
+
+stages/levels of logs -
+
+info - to record the message which is captured during the execution
+warn - it is going to inform you that you might have a problem in your code
+error - it is used to inform you about the serious issue that your script might cause
+fatal - it is used to inform serious issue like error but it stops the execution when the
+seriousness of the code is high
+
+clean
+compile
+verify
+test
+install
+package are the phases of maven
+
+mvn clean test is the command to run from CMD
+mvn test -Dcucumber.options="--tags @smoke" to override the tag
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
